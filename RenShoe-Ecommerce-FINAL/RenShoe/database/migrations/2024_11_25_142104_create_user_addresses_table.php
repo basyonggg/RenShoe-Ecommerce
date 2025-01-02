@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('street', 255);
+            $table->string('street', 255)->nullable();;
             $table->string('purok', 255)->nullable();
-            $table->string('barangay', 255);
+            $table->string('barangay', 255)->nullable();;
             $table->string('city', 255)->nullable();
-            $table->string('zipcode', 45);
+            $table->string('zipcode', 45)->nullable();;
             $table->boolean('isMain')->default(1);
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -24,13 +24,25 @@ class ProfileController extends Controller
     }
 
     //Update the user's profile information.
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
 {
-    // Validate all inputs (Profile and Address)
-    $validated = $request->validated();
+    // Validate inputs directly in the method
+    $validated = $request->validate([
+        'first_name' => ['required', 'string', 'max:255'],
+        'last_name'  => ['required', 'string', 'max:255'],
+        'contact_num'=> ['required', 'string', 'max:20'],
+        'username'   => ['required', 'string', 'max:255', 'unique:users,username,' . $request->user()->id],
+        'email'      => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
+        'street'     => ['required', 'string', 'max:255'],
+        'purok'      => ['nullable', 'string', 'max:255'],
+        'barangay'   => ['required', 'string', 'max:255'],
+        'city'       => ['required', 'string', 'max:255'],
+        'zipcode'    => ['required', 'string', 'max:10'],
+    ]);
 
     // Update the user's profile fields
-    $request->user()->fill([
+    $user = $request->user();
+    $user->fill([
         'first_name' => $validated['first_name'],
         'last_name'  => $validated['last_name'],
         'contact_num'=> $validated['contact_num'],
@@ -38,33 +50,29 @@ class ProfileController extends Controller
         'email'      => $validated['email'],
     ]);
 
-    // Check email change and unverify if changed
-    if ($request->user()->isDirty('email')) {
-        $request->user()->email_verified_at = null;
+    // Check if the email was changed, and unverify if so
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null; // Unverify email if changed
     }
 
     // Save profile changes
-    $request->user()->save();
+    $user->save();
 
     // Handle address updates
-    $addressData = [
-        'street'   => $validated['street'],
-        'purok'    => $validated['purok'] ?? null,
-        'barangay' => $validated['barangay'],
-        'city'     => $validated['city'],
-        'zipcode'  => $validated['zipcode'],
-    ];
-
-    // Check if the user already has an address
-    $address = UserAddress::updateOrCreate(
-        ['user_id' => $request->user()->id], // Search criteria
-        $addressData                         // Update or create with this data
+    UserAddress::updateOrCreate(
+        ['user_id' => $user->id], // Search criteria
+        [
+            'street'   => $validated['street'],
+            'purok'    => $validated['purok'],
+            'barangay' => $validated['barangay'],
+            'city'     => $validated['city'],
+            'zipcode'  => $validated['zipcode'],
+        ]
     );
 
-    // Redirect with success message
+    // Redirect with a success message
     return Redirect::route('profile.edit')->with('status', 'Profile and address updated successfully!');
 }
-
 
 
     /* Another version of the profile update with alternate logic.

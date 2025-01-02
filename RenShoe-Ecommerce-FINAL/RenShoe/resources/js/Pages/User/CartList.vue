@@ -96,34 +96,19 @@ function submit() {
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center">
-                                            <button
-                                                @click.prevent="update(product, carts[itemId(product.id)].quantity - 1)"
-                                                :disabled="carts[itemId(product.id)].quantity <= 1"
-                                                :class="[carts[itemId(product.id)].quantity > 1 ? 'cursor-pointer text-red-600' : 'cursor-not-allowed text-gray-300 dark:text-gray-500', 'inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700']"
-                                                type="button">
+                                            <button @click.prevent="update(product, carts[itemId(product.id)].quantity - 1)" :disabled="carts[itemId(product.id)].quantity <= 1" :class="[carts[itemId(product.id)].quantity > 1 ? 'cursor-pointer text-red-600' : 'cursor-not-allowed text-gray-300 dark:text-gray-500', 'inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700']" type="button">
                                                 <span class="sr-only">Quantity button</span>
-                                                <svg class="w-3 h-3" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                                 </svg>
                                             </button>
                                             <div>
-                                                <input type="text" id="first_product"
-                                                    @input="validateNumberInput($event, product)"
-                                                    v-model="carts[itemId(product.id)].quantity" readonly
-                                                    class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="1" required />
+                                                <input type="text" id="first_product" @input="validateNumberInput($event, product)" v-model="carts[itemId(product.id)].quantity" readonly class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1" required />
                                             </div>
-                                            <button
-                                                @click.prevent="update(product, carts[itemId(product.id)].quantity + 1)"
-                                                class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                                                type="button">
+                                            <button @click.prevent="update(product, carts[itemId(product.id)].quantity + 1)" class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                                                 <span class="sr-only">Quantity button</span>
-                                                <svg class="w-3 h-3" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
                                                 </svg>
                                             </button>
                                         </div>
@@ -132,8 +117,7 @@ function submit() {
                                         ${{ product.price }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a @click="remove(product)"
-                                            class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                                        <a @click="remove(product)" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -161,37 +145,30 @@ function submit() {
                     <form @submit.prevent="submit">
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">City</label>
-                            <input type="text" id="name" name="city" v-model="form.city"
-                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="name" name="city" v-model="form.city" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Barangay</label>
-                            <input type="text" id="barangay" name="barangay" v-model="form.barangay"
-                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="barangay" name="barangay" v-model="form.barangay" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Purok</label>
-                            <input type="text" id="purok" name="purok" v-model="form.purok"
-                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="purok" name="purok" v-model="form.purok" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Street</label>
-                            <input type="text" id="street" name="street" v-model="form.street"
-                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="street" name="street" v-model="form.street" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Zipcode</label>
-                            <input type="number" id="zipcode" name="zipcode" v-model="form.zipcode"
-                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="number" id="zipcode" name="zipcode" v-model="form.zipcode" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         
 
                         <button v-if="formFilled || userAddress" type="submit"
                             class="text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Checkout</button>
 
-                        <button v-else type="submit"
-                            class="text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Add Shipping
-                            Address to continue</button>
+                        <button v-else type="submit" class="text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Add Shipping Address to continue</button>
 
 
 

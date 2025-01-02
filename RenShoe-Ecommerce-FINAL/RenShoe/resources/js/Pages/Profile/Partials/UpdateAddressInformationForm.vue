@@ -16,14 +16,14 @@ const toggleAccordion = () => {
 const { auth } = usePage().props;
 const user = auth.user;
 
-// Initialize form data
+//Initialize form data
 const form = useForm({
-    street: user.address?.street || '',
-    purok: user.address?.purok || '',
-    barangay: user.address?.barangay || '',
-    city: user.address?.city || '',
-    zipcode: user.address?.zipcode || '',
-    isMain: user.address?.isMain || false,
+    street: user.address?.street,
+    purok: user.address?.purok,
+    barangay: user.address?.barangay,
+    city: user.address?.city,
+    zipcode: user.address?.zipcode,
+    isMain: user.address?.isMain
 });
 </script>
 
@@ -66,7 +66,7 @@ const form = useForm({
                             <TextInput id="zipcode" v-model="form.zipcode" type="text" class="w-full" />
                         </div>
                         <div>
-                            <label class="flex items-center space-x-2">
+                            <label class="flex items-center space-x-4 mt-6 ml-4">
                                 <input type="checkbox" v-model="form.isMain" class="form-checkbox" />
                                 <span>Set as Main Address</span>
                             </label>

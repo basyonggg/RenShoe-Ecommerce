@@ -6,7 +6,6 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const isAccountSettingOpen = ref(false); // Toggle accordion visibility
-const previewImage = ref('');           // Store uploaded image preview
 const placeholderTextVisible = ref(true); // Show placeholder text if no image is uploaded
 
 // Toggle accordion visibility
@@ -20,12 +19,12 @@ const user = auth.user;
 
 // Initialize form data
 const form = useForm({
-    name: user.name || '',
-    email: user.email || '',
-    first_name: user.first_name || '',
-    contact_num: user.contact_num || '',
-    last_name: user.last_name || '',
-    username: user.username || '',
+    name: user.name,
+    email: user.email,
+    first_name: user.first_name,
+    contact_num: user.contact_num,
+    last_name: user.last_name,
+    username: user.username
 });
 </script>
 
