@@ -57,37 +57,19 @@ const submit = () => {
             <!-- Email Input -->
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    v-model="form.email"
-                    placeholder="Enter your email"
-                    required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-black focus:border-gray-300 text-sm"
-                />
+                <input type="email" id="email" v-model="form.email" placeholder="Enter your email" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-black focus:border-gray-300 text-sm"/>
             </div>
 
             <!-- Password Input -->
             <div class="relative">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    v-model="form.password"
-                    placeholder="••••••••"
-                    required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-black focus:border-gray-300 text-sm"
-                />
+                <input type="password" id="password" v-model="form.password" placeholder="••••••••" require class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-black focus:border-gray-300 text-sm"/>
             </div>
 
             <!-- Remember Me & Forgot Password -->
             <div class="flex justify-between items-center text-sm">
                 <label class="flex items-center">
-                    <input
-                        type="checkbox"
-                        v-model="form.remember"
-                        class="form-checkbox h-4 w-4 text-black border-gray-300 rounded focus:ring-gray-700"
-                    />
+                    <input type="checkbox" v-model="form.remember" class="form-checkbox h-4 w-4 text-black border-gray-300 rounded focus:ring-gray-700"/>
                     <span class="ml-2 text-gray-700">Remember me</span>
                 </label>
                 <Link v-if="canResetPassword" :href="route('password.request')" class="text-black font-medium hover:underline">
@@ -97,14 +79,7 @@ const submit = () => {
 
             <!-- Sign In Button -->
             <div>
-                <button
-                    type="submit"
-                    class="w-full bg-black text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-800 transition"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Sign in
-                </button>
+                <button type="submit" class="w-full bg-black text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-800 transition" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Sign in</button>
             </div>
 
             <!-- Sign Up Link -->

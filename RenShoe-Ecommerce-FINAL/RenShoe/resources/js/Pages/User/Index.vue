@@ -40,7 +40,4 @@ defineProps({
             </div>
         </div>
     </UserLayouts>
-
-
-
 </template>
